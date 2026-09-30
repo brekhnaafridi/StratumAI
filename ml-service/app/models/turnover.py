@@ -8,7 +8,11 @@ import xgboost as xgb
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
-import shap
+
+try:
+    import shap
+except ImportError:
+    shap = None
 
 logger = logging.getLogger(__name__)
 
@@ -53,7 +57,7 @@ class TurnoverModel:
         )
         self.lr_model: LogisticRegression = LogisticRegression(max_iter=1000, random_state=42)
 
-        self.explainer: Optional[shap.TreeExplainer] = None
+        self.explainer: Optional[Any] = None
         self.is_fitted: bool = False
         self._initialize_production_model()
 
@@ -102,10 +106,13 @@ class TurnoverModel:
         self.lr_model.fit(X, y)
 
         # Initialize SHAP TreeExplainer
-        try:
-            self.explainer = shap.TreeExplainer(self.xgb_model)
-        except Exception as e:
-            logger.warning(f"Could not initialize TreeExplainer: {e}")
+        if shap is not None:
+            try:
+                self.explainer = shap.TreeExplainer(self.xgb_model)
+            except Exception as e:
+                logger.warning(f"Could not initialize TreeExplainer: {e}")
+                self.explainer = None
+        else:
             self.explainer = None
 
         self.is_fitted = True
