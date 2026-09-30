@@ -1,13 +1,13 @@
-# PeopleAI — Enterprise Workforce Intelligence & Employee Experience Platform
+# StratumAI — Enterprise Workforce Intelligence & Employee Experience Platform
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Frontend](https://img.shields.io/badge/Frontend-Vue%203%20%7C%20TypeScript%20%7C%20TailwindCSS-4FC08D.svg)](frontend/)
 [![Backend](https://img.shields.io/badge/Backend-Laravel%2011%20%28PHP%208.3%29-FF2D20.svg)](backend/)
 [![ML Microservice](https://img.shields.io/badge/ML%20Service-FastAPI%20%7C%20XGBoost%20%7C%20SHAP-009688.svg)](ml-service/)
 [![Inference](https://img.shields.io/badge/LLM%20Inference-Groq%20LPU%20%28120B%29-F55036.svg)](https://groq.com)
-[![Design System](https://img.shields.io/badge/UI%2FUX-Soft%20Neumorphism-2D6CDF.svg)](frontend/src/style.css)
+[![Design System](https://img.shields.io/badge/UI%2FUX-Glassmorphism%20%26%20Stratum-6366F1.svg)](frontend/src/style.css)
 
-> **PeopleAI** is a dual-engine enterprise workforce platform that bridges executive HR intelligence with employee self-service. Built on a tactile **Soft Neumorphic design system**, PeopleAI pairs predictive turnover modeling (XGBoost + SHAP), anomaly auditing (Isolation Forest), and policy intelligence (Groq LPU + ChromaDB RAG) with a self-service Employee Portal and automated credential provisioning for **1,000+ employees**.
+> **StratumAI** is a dual-engine enterprise workforce platform that bridges executive HR intelligence with employee self-service. Built on a luminous **Glassmorphism design system**, StratumAI pairs predictive turnover modeling (XGBoost + SHAP), anomaly auditing (Isolation Forest), and policy intelligence (Groq LPU + ChromaDB RAG) with a self-service Employee Portal and automated credential provisioning for **1,000+ employees**.
 
 ---
 

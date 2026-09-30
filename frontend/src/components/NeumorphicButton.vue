@@ -25,19 +25,24 @@ defineEmits<{
     :type="type"
     :disabled="disabled || loading"
     :class="[
-      'inline-flex items-center justify-center font-semibold transition-all duration-150 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed select-none',
+      'relative inline-flex items-center justify-center font-semibold transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed select-none overflow-hidden',
       size === 'sm' && 'px-3 py-1.5 text-xs rounded-xl gap-1.5',
       size === 'md' && 'px-4 py-2 text-xs rounded-xl gap-2',
       size === 'lg' && 'px-6 py-2.5 text-sm rounded-xl gap-2.5',
-      variant === 'default' && 'btn-secondary',
-      variant === 'primary' && 'btn-primary',
-      variant === 'accent' && 'btn-accent',
-      variant === 'danger' && 'bg-rose-600 text-white rounded-xl shadow-md hover:bg-rose-700',
-      variant === 'ghost' && 'bg-transparent hover:bg-neu-surface text-neu-muted hover:text-neu-text',
-      variant === 'inset' && 'shadow-neu-inset text-neu-primary font-semibold',
+      variant === 'default' && 'bg-white/[0.05] backdrop-blur-md text-gray-200 hover:bg-white/[0.09] hover:text-white border border-white/[0.1] active:scale-[0.98]',
+      variant === 'primary' && 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 hover:from-blue-500 hover:to-indigo-500 border border-white/10 active:scale-[0.98]',
+      variant === 'accent' && 'bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/20 hover:from-amber-400 hover:to-orange-400 border border-white/10 active:scale-[0.98]',
+      variant === 'danger' && 'bg-rose-600 text-white rounded-xl shadow-lg shadow-rose-500/20 hover:bg-rose-500 active:scale-[0.98]',
+      variant === 'ghost' && 'bg-transparent hover:bg-white/[0.06] text-gray-400 hover:text-white',
+      variant === 'inset' && 'bg-blue-500/10 text-blue-400 border border-blue-500/20 backdrop-blur-sm hover:bg-blue-500/15',
     ]"
     @click="$emit('click', $event)"
   >
+    <!-- Inset shimmer for glass variants -->
+    <span
+      v-if="variant === 'default' || variant === 'inset'"
+      class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.12] to-transparent pointer-events-none"
+    />
     <svg
       v-if="loading"
       class="animate-spin -ml-1 mr-2 h-4 w-4"

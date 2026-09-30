@@ -20,26 +20,14 @@ class RAGChatbot:
     def __init__(self) -> None:
         self._collection: Optional[Any] = None
         self._openai_client: Optional[Any] = None
-        self._documents: List[Dict[str, Any]] = []
+        self._documents: List[Dict[str, Any]] = SAMPLE_DOCUMENTS
         self._conversation_history: List[Dict[str, str]] = []
-        self._initialize()
+        # Initialize ChromaDB & embeddings in background thread so server starts immediately
+        import threading
+        threading.Thread(target=self._initialize, daemon=True).start()
 
     def _initialize(self) -> None:
         """Initialize ChromaDB collection and OpenAI client."""
-        # Initialize ChromaDB
-        try:
-            import chromadb
-
-            client = chromadb.Client()
-            self._collection = client.get_or_create_collection(
-                name="hr_policies",
-                metadata={"hnsw:space": "cosine"},
-            )
-            logger.info("ChromaDB collection initialized successfully.")
-        except Exception as e:
-            logger.warning(f"Failed to initialize ChromaDB: {e}")
-            self._collection = None
-
         # Initialize LLM client (Groq or OpenAI)
         api_key = settings.GROQ_API_KEY or settings.OPENAI_API_KEY
         self._model = settings.LLM_MODEL or "openai/gpt-oss-120b"
@@ -62,8 +50,20 @@ class RAGChatbot:
                 logger.warning(f"Failed to initialize LLM client: {e}")
                 self._openai_client = None
 
-        # Load sample documents on startup
-        self.ingest_documents(SAMPLE_DOCUMENTS)
+        # Initialize ChromaDB
+        try:
+            import chromadb
+
+            client = chromadb.Client()
+            self._collection = client.get_or_create_collection(
+                name="hr_policies",
+                metadata={"hnsw:space": "cosine"},
+            )
+            logger.info("ChromaDB collection initialized successfully.")
+            self.ingest_documents(SAMPLE_DOCUMENTS)
+        except Exception as e:
+            logger.warning(f"Failed to initialize ChromaDB: {e}")
+            self._collection = None
 
     def ingest_documents(self, documents: List[Dict[str, Any]]) -> int:
         """Embed and store documents in ChromaDB.

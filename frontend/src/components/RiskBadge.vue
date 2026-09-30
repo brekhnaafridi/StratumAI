@@ -34,11 +34,11 @@ const label = computed(() => {
 const badgeClass = computed(() => {
   switch (computedLevel.value) {
     case 'high':
-      return 'bg-rose-500/10 text-rose-700'
+      return 'bg-rose-500/10 text-rose-400 border border-rose-500/20'
     case 'medium':
-      return 'bg-amber-500/10 text-amber-700'
+      return 'bg-amber-500/10 text-amber-400 border border-amber-500/20'
     case 'low':
-      return 'bg-emerald-500/10 text-emerald-700'
+      return 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
   }
 })
 </script>

@@ -12,18 +12,18 @@ withDefaults(
 </script>
 
 <template>
-  <div class="neu-card p-12 text-center flex flex-col items-center justify-center">
-    <div class="w-12 h-12 rounded-2xl bg-neu-primary/10 text-neu-primary flex items-center justify-center mb-3">
+  <div class="glass-elevated rounded-2xl p-12 text-center flex flex-col items-center justify-center border border-white/[0.08]">
+    <div class="w-12 h-12 rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-3 border border-blue-500/20 backdrop-blur-sm">
       <slot name="icon">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M5 13l4 4L19 7" />
         </svg>
       </slot>
     </div>
-    <h3 class="text-base font-bold text-neu-text tracking-tight mb-1">
+    <h3 class="text-base font-bold text-white tracking-tight mb-1">
       {{ title }}
     </h3>
-    <p class="text-xs text-neu-muted max-w-sm">
+    <p class="text-xs text-gray-400 max-w-sm">
       {{ description }}
     </p>
     <div v-if="$slots.action" class="mt-4">

@@ -15,12 +15,12 @@ withDefaults(defineProps<Props>(), {
 <template>
   <div
     :class="[
-      'transition-all duration-200',
-      elevation === 'sm' && 'neu-card-sm',
-      elevation === 'flat' && 'neu-card',
-      elevation === 'lg' && 'neu-card-elevated',
-      elevation === 'inset' && 'neu-input p-5',
-      hoverable && 'hover:translate-y-[-2px]',
+      'rounded-2xl transition-all duration-300',
+      elevation === 'flat' && 'glass-elevated',
+      elevation === 'sm' && 'glass-elevated shadow-glass-sm',
+      elevation === 'lg' && 'glass-elevated shadow-glass-lg',
+      elevation === 'inset' && 'glass-input p-5',
+      hoverable && 'glass-card-glow hover:-translate-y-0.5',
       className,
     ]"
   >

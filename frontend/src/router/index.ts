@@ -69,6 +69,19 @@ const router = createRouter({
       component: () => import('@/views/MLOpsView.vue'),
     },
     {
+      path: '/welcome',
+      alias: ['/showcase', '/about'],
+      name: 'welcome',
+      component: () => import('@/views/LandingView.vue'),
+      meta: { public: true },
+    },
+    {
+      path: '/collections',
+      alias: ['/saved-cohorts'],
+      name: 'collections',
+      component: () => import('@/views/CollectionsView.vue'),
+    },
+    {
       path: '/settings',
       name: 'settings',
       component: () => import('@/views/SettingsView.vue'),

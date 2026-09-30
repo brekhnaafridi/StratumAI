@@ -29,28 +29,28 @@ withDefaults(defineProps<Props>(), {
 <template>
   <span
     :class="[
-      'inline-flex items-center gap-1.5 rounded-full font-bold uppercase tracking-wider select-none',
+      'inline-flex items-center gap-1.5 rounded-full font-bold uppercase tracking-wider select-none backdrop-blur-sm border',
       size === 'sm' ? 'px-2 py-0.5 text-[10px]' : 'px-2.5 py-1 text-xs',
-      (variant === 'primary') && 'bg-neu-primary/10 text-neu-primary border border-neu-primary/20',
-      (variant === 'accent') && 'bg-amber-500/15 text-amber-800 border border-amber-300/60',
-      (variant === 'success' || variant === 'low' || variant === 'active') && 'bg-emerald-50 text-emerald-700 border border-emerald-200/60',
-      (variant === 'warning' || variant === 'medium') && 'bg-amber-50 text-amber-700 border border-amber-200/60',
-      (variant === 'danger' || variant === 'critical' || variant === 'terminated' || variant === 'high') && 'bg-rose-50 text-rose-700 border border-rose-200/60',
-      (variant === 'on_leave' || variant === 'info') && 'bg-blue-50 text-blue-700 border border-blue-200/60',
-      (variant === 'neutral') && 'bg-neu-base text-neu-muted border border-neu-border/60',
+      (variant === 'primary') && 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+      (variant === 'accent') && 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+      (variant === 'success' || variant === 'low' || variant === 'active') && 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+      (variant === 'warning' || variant === 'medium') && 'bg-amber-500/10 text-amber-400 border-amber-500/20',
+      (variant === 'danger' || variant === 'critical' || variant === 'terminated' || variant === 'high') && 'bg-rose-500/10 text-rose-400 border-rose-500/20',
+      (variant === 'on_leave' || variant === 'info') && 'bg-blue-500/10 text-blue-400 border-blue-500/20',
+      (variant === 'neutral') && 'bg-white/[0.04] text-gray-400 border-white/[0.08]',
     ]"
   >
     <span
       :class="[
         'rounded-full flex-shrink-0',
         size === 'sm' ? 'w-1.5 h-1.5' : 'w-2 h-2',
-        variant === 'primary' && 'bg-neu-primary',
-        variant === 'accent' && 'bg-amber-500',
-        (variant === 'success' || variant === 'low' || variant === 'active') && 'bg-emerald-500',
-        (variant === 'warning' || variant === 'medium') && 'bg-amber-500',
-        (variant === 'danger' || variant === 'critical' || variant === 'terminated' || variant === 'high') && 'bg-rose-500',
-        (variant === 'on_leave' || variant === 'info') && 'bg-blue-500',
-        variant === 'neutral' && 'bg-neu-muted',
+        variant === 'primary' && 'bg-blue-400',
+        variant === 'accent' && 'bg-amber-400',
+        (variant === 'success' || variant === 'low' || variant === 'active') && 'bg-emerald-400',
+        (variant === 'warning' || variant === 'medium') && 'bg-amber-400',
+        (variant === 'danger' || variant === 'critical' || variant === 'terminated' || variant === 'high') && 'bg-rose-400',
+        (variant === 'on_leave' || variant === 'info') && 'bg-blue-400',
+        variant === 'neutral' && 'bg-gray-500',
       ]"
     />
     <slot>{{ label }}</slot>

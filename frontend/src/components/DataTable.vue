@@ -39,43 +39,43 @@ function handleRowClick(row: Record<string, any>) {
 </script>
 
 <template>
-  <div class="overflow-x-auto bg-white rounded-lg shadow">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-50">
-        <tr>
+  <div class="overflow-x-auto rounded-2xl glass-elevated border border-white/[0.08]">
+    <table class="min-w-full">
+      <thead>
+        <tr class="border-b border-white/[0.06]">
           <th
             v-for="col in columns"
             :key="col.key"
             :class="[
-              'px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider',
-              col.sortable ? 'cursor-pointer select-none hover:bg-gray-100' : '',
+              'px-5 py-3.5 text-left text-[11px] font-bold text-gray-500 uppercase tracking-wider bg-white/[0.02]',
+              col.sortable ? 'cursor-pointer select-none hover:text-gray-300 transition-colors' : '',
               col.class || '',
             ]"
             @click="handleSort(col)"
           >
             <div class="flex items-center gap-1">
               {{ col.label }}
-              <span v-if="col.sortable && sortKey === col.key" class="text-indigo-600">
-                {{ sortDirection === 'asc' ? '&#9650;' : '&#9660;' }}
+              <span v-if="col.sortable && sortKey === col.key" class="text-blue-400 ml-0.5">
+                {{ sortDirection === 'asc' ? '↑' : '↓' }}
               </span>
             </div>
           </th>
         </tr>
       </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
+      <tbody class="divide-y divide-white/[0.04]">
         <tr v-if="loading">
-          <td :colspan="columns.length" class="px-6 py-12 text-center text-gray-500">
+          <td :colspan="columns.length" class="px-5 py-12 text-center text-gray-500">
             <div class="flex items-center justify-center gap-2">
-              <svg class="w-5 h-5 animate-spin text-indigo-600" fill="none" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 animate-spin text-blue-500" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
-              Loading...
+              <span class="text-sm">Loading...</span>
             </div>
           </td>
         </tr>
         <tr v-else-if="data.length === 0">
-          <td :colspan="columns.length" class="px-6 py-12 text-center text-gray-500">
+          <td :colspan="columns.length" class="px-5 py-12 text-center text-gray-500 text-sm">
             No data available
           </td>
         </tr>
@@ -83,13 +83,13 @@ function handleRowClick(row: Record<string, any>) {
           v-else
           v-for="(row, index) in data"
           :key="index"
-          class="hover:bg-gray-50 cursor-pointer transition-colors"
+          class="hover:bg-white/[0.03] cursor-pointer transition-all duration-150 group"
           @click="handleRowClick(row)"
         >
           <td
             v-for="col in columns"
             :key="col.key"
-            class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+            class="px-5 py-3.5 whitespace-nowrap text-sm text-gray-300 group-hover:text-white transition-colors"
           >
             <slot :name="`cell-${col.key}`" :row="row" :value="row[col.key]">
               {{ row[col.key] }}
@@ -99,7 +99,7 @@ function handleRowClick(row: Record<string, any>) {
       </tbody>
     </table>
 
-    <div v-if="$slots.pagination" class="px-6 py-3 bg-gray-50 border-t border-gray-200">
+    <div v-if="$slots.pagination" class="px-5 py-3 border-t border-white/[0.06] bg-white/[0.01]">
       <slot name="pagination" />
     </div>
   </div>
