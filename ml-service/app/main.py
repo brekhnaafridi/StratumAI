@@ -87,7 +87,21 @@ app.include_router(chat.router, prefix="/api/v1")
 app.include_router(payroll.router, prefix="/api/v1")
 
 
+@app.get("/", tags=["root"])
+async def root():
+    """Root endpoint providing service metadata."""
+    return {
+        "service": "StratumAI ML Intelligence Microservice",
+        "status": "online",
+        "version": "1.0.0",
+        "documentation": "/docs",
+        "health": "/health",
+        "models_ready": models_loaded,
+    }
+
+
 @app.get("/health", response_model=HealthResponse, tags=["health"])
+@app.get("/api/v1/health", response_model=HealthResponse, tags=["health"])
 async def health_check() -> HealthResponse:
     """Health check endpoint.
 
